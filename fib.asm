@@ -21,15 +21,18 @@ FIBFN ST R0, SAVER0
       ADD R0, R0, #-1
       BRz BASE
       
-      ADD R3, R2, #-2
+      ADD R3, R2, #0
+      ADD R2, R2, #-2
       LEA R4, FIBFN
       
-      ADD R5, R2, #-1
-      LEA R6, FIBFN
+      ADD R2, R3, #0
+      ADD R2, R2, #-1
+      LEA R5, FIBFN
       
-      ADD R3, R5, R7
+      ADD R3, R4, R5
+      LDR R5, R3, #3
       
-      LD R0, SAVER0
+FIN   LD R0, SAVER0
       LD R1, SAVER1
       LD R2, SAVER2
       LD R3, SAVER3
@@ -38,9 +41,7 @@ FIBFN ST R0, SAVER0
       LD R6, SAVER6
       LD R7, SAVER7
       
-      
-      
-FIN      HALT
+      HALT
       
 NEG   AND R3, R3, #0
       LDR R5, R3, #3
