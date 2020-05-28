@@ -15,27 +15,17 @@ FIBFN ST R0, SAVER0
       ST R6, SAVER5
       ST R7, SAVER7
       
-      LEA R0, PROMPT
-      PUTS
-      GETC
-      OUT
-      ADD R2, R0, #0 ; Saves input into R2
-      
-      LOOPZ GETC
-      ADD R0, R0, #-10
-      BRnp LOOPZ
-      
       ADD R0, R2, #0
       BRnz NEG
       
       ADD R0, R0, #-1
       BRz BASE
       
-      ADD R4, R3, #-2
-      LEA R5, FIBFN
+      ADD R3, R2, #-2
+      LEA R4, FIBFN
       
-      ADD R6, R3, #-1
-      LEA R7, FIBFN
+      ADD R5, R2, #-1
+      LEA R6, FIBFN
       
       ADD R3, R5, R7
       
@@ -48,13 +38,17 @@ FIBFN ST R0, SAVER0
       LD R6, SAVER6
       LD R7, SAVER7
       
-      HALT
+      
+      
+FIN      HALT
       
 NEG   AND R3, R3, #0
+      LDR R5, R3, #3
+      BRnzp FIN
 
 BASE  ADD R3, R3, #0
-
-      RTI
+      LDR R5, R3, #3
+      BRnzp FIN
 
 PROMPT  .STRINGZ "Enter an integer: "
 SAVER0  .FILL x0000
