@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include "fib.h"
 
 /*
  * Recursively computes Fibonacci numbers.
